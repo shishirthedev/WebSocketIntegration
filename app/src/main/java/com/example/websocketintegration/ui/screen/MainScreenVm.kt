@@ -59,14 +59,8 @@ class MainScreenVm : ViewModel() {
 
     fun onUiEvent(event: MainScreenUiEvent) {
         when (event) {
-            is MainScreenUiEvent.ConnectBtnTapped -> {
-                socket.connect()
-            }
-
-            is MainScreenUiEvent.DisConnectBtnTapped -> {
-                disConnect()
-            }
-
+            is MainScreenUiEvent.ConnectBtnTapped -> connect()
+            is MainScreenUiEvent.DisConnectBtnTapped -> disConnect()
             is MainScreenUiEvent.SendBtnTapped -> {
                 val message: String = event.message
                 sendMessage(message)
@@ -85,7 +79,7 @@ class MainScreenVm : ViewModel() {
     }
 
     fun disConnect() {
-        socket.disConnect(1001, "")
+        socket.disConnect()
     }
 
     fun terminate() {
